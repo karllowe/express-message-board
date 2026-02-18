@@ -2,5 +2,20 @@
     <body>
         <h1>Hello Karl!</h1>
         <p>welcome to my page</p>
+        <a href="/new" class="btn">New</a>
+        <ul>
+            <% messages.map((item) => {%>
+                <li>
+                    <a href="/messageDetails/<%= item.id %>">
+                    <div>
+                        <%= item.user %>
+                        <%= item.text %>
+                        <%= item.added %>
+                    </div>
+                    </a>
+                </li>
+            <% 
+            })%>
+        </ul>
     </body>
 </html>
