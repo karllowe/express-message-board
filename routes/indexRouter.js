@@ -1,21 +1,22 @@
 const {Router} = require("express");
 const indexRouter = Router();
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-    id: crypto.randomUUID()
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-    id: crypto.randomUUID()
-  }
-];
+const messagesController = require("../controllers/messageController");
+// const messages = [
+//   {
+//     text: "Hi there!",
+//     user: "Amando",
+//     added: new Date(),
+//     id: crypto.randomUUID()
+//   },
+//   {
+//     text: "Hello World!",
+//     user: "Charles",
+//     added: new Date(),
+//     id: crypto.randomUUID()
+//   }
+// ];
 
-indexRouter.get("/", (req, res) => {res.render("index", {messages: messages})});
+indexRouter.get("/", messagesController.getAllMessages);
 indexRouter.get("/new", (req,res) => {res.render("form")});
 indexRouter.post("/new", (req,res) => {
     messages.push({text: req.body.message_text, user: req.body.author_name, added: new Date(), id: crypto.randomUUID()});
