@@ -3,7 +3,8 @@ const app = express();
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const indexRouter = require("./routes/indexRouter");
-const PORT = 3000;
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(assetsPath));
 app.set("views", path.join(__dirname, "views"));
@@ -16,6 +17,7 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.statusCode || 500).send(err.message);
 });
+
 app.listen(PORT, (error) => {
   if (error) {
     throw error;
