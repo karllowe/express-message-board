@@ -5,6 +5,12 @@ async function getMessages() {
     return rows;
 }
 
+async function getMessageDetails(id) {
+    const { rows } = await pool.query("SELECT * FROM messages INNER JOIN users ON messages.user_id = users.id WHERE messages.id = $1", [id]);
+    return rows[0];
+}
+
 module.exports = {
-    getMessages
+    getMessages,
+    getMessageDetails
 }
