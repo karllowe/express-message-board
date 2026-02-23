@@ -10,7 +10,18 @@ async function getMessageDetails(id) {
     return rows[0];
 }
 
+async function getUsers() {
+    const { rows } = await pool.query("SELECT * from users");
+    return rows 
+}
+
+async function postMessage(message, userID, date) {
+    await pool.query("INSERT INTO messages (message, date_added, user_id) values ($1, $2, $3)", [message, date, userID])
+}
+
 module.exports = {
     getMessages,
-    getMessageDetails
+    getMessageDetails,
+    getUsers,
+    postMessage
 }

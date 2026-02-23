@@ -4,8 +4,12 @@
             New message
         </h1>
         <form method="POST" action="/new">
-            <label for="name">Author:</label>
-            <input type="text" id="name" name="author_name">
+            <label for="name">User:</label>
+            <select id="name" name="username">
+                <% users.forEach((user) => {%>
+                    <option value= "<%=user.id %>"><%=user.username %></option>
+                <%})%>
+            </select>
             <label for="messsage">Message:</label>
             <input type="text" id="message" name="message_text">
             <button type="submit">Submit</button>
